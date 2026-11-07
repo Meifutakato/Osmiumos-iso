@@ -1,0 +1,94 @@
+# NexusOS — paquets ajoutés à l'image (en plus de ceux d'Arch « releng » : noyau, micrologiciels, outils disque…)
+# Un paquet absent des dépôts officiels est fabriqué depuis l'AUR (voir paquets-aur.txt).
+# Steam, Wine, Proton et les modèles d'IA ne sont PAS dans l'image (trop lourds) :
+# ils s'installent après coup, avec Internet.
+
+# ── Système ──
+base-devel
+btrfs-progs
+grub
+efibootmgr
+os-prober
+networkmanager
+network-manager-applet
+sudo
+git
+python
+python-pip
+zram-generator
+earlyoom
+snapper
+snap-pac
+inotify-tools
+xdg-user-dirs
+xdg-utils
+libnotify
+desktop-file-utils
+shared-mime-info
+
+# ── Graphique (AMD et Intel) ──
+mesa
+vulkan-radeon
+vulkan-intel
+vulkan-icd-loader
+
+# ── Bureau NexusOS ──
+hyprland
+xdg-desktop-portal-hyprland
+hyprlock
+hypridle
+hyprpolkitagent
+quickshell
+qt6-svg
+qt6-5compat
+kitty
+dunst
+swaybg
+thunar
+gvfs
+pavucontrol
+sddm
+rofi
+fastfetch
+btop
+zenity
+
+# ── Polices et icônes ──
+ttf-jetbrains-mono-nerd
+noto-fonts
+noto-fonts-emoji
+papirus-icon-theme
+hicolor-icon-theme
+
+# ── Son, Bluetooth ──
+pipewire
+pipewire-pulse
+pipewire-audio
+wireplumber
+libpulse
+bluez
+bluez-utils
+
+# ── Captures, vidéo, multimédia ──
+grim
+slurp
+wl-clipboard
+wf-recorder
+ffmpeg
+mpv
+qrencode
+zbar
+
+# ── Réseau (Wi-Fi par QR code, WPS) ──
+iw
+wpa_supplicant
+
+# ── Sécurité (gardien, cloison, Defender) ──
+clamav
+bubblewrap
+
+# ── Jeux (légers ; Steam s'installe après) ──
+gamemode
+mangohud
+
+# ── Outils Rust de NexusOS (compilés pendant la fabrication) : rien à ajouter ici ──

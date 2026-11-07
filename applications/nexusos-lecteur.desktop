@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Lecteur NexusOS
+GenericName=Lecteur vidéo et musique
+Comment=Lire les vidéos, les clips de jeu et la musique
+Exec=mpv --player-operation-mode=pseudo-gui -- %U
+Icon=/usr/share/pixmaps/nexusos-lecteur.svg
+Categories=AudioVideo;Video;Audio;Player;
+MimeType=video/mp4;video/x-matroska;video/webm;video/quicktime;video/x-msvideo;video/mpeg;video/ogg;audio/mpeg;audio/flac;audio/ogg;audio/x-wav;audio/mp4;
+Keywords=vidéo;film;musique;clip;lecteur;

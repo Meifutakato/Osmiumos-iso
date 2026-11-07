@@ -1,0 +1,77 @@
+# NexusOS — fabrication de l'image ISO
+#  · à chaque modification de ce dépôt, ou à la main (onglet Actions › « Image ISO » › Run workflow) :
+#    l'ISO est gardée 7 jours dans les « artifacts » de la fabrication
+#  · étiquette « v… » (ex. v0.1) : l'ISO est publiée dans Releases, téléchargeable sans compte
+name: Image ISO
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  workflow_dispatch:
+    inputs:
+      nexusos_ref:
+        description: "Version du dépôt nexusos à utiliser (branche ou commit)"
+        default: main
+
+permissions:
+  contents: write
+
+concurrency:
+  group: iso-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  iso:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    steps:
+      - name: Place libre (la fabrication demande ~10 Go)
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL /usr/local/share/boost
+          sudo docker image prune -af >/dev/null
+          df -h /
+
+      - uses: actions/checkout@v4
+
+      - name: Dépôt nexusos (outils, thème)
+        uses: actions/checkout@v4
+        with:
+          repository: Meifutakato/nexusos
+          ref: ${{ github.event.inputs.nexusos_ref || 'main' }}
+          path: nexusos
+          fetch-depth: 1
+
+      - name: Fabrication (conteneur Arch Linux)
+        run: |
+          sudo docker run --rm --privileged \
+            -v "$PWD:/iso" -w /iso \
+            -e NEXUSOS_DIR=/iso/nexusos -e SORTIE=/iso/sortie -e TRAVAIL=/tmp/nexus-iso \
+            archlinux:latest bash /iso/construire.sh
+
+      - name: Découpe si l'ISO dépasse 2 Go (limite des Releases GitHub)
+        run: |
+          cd sortie
+          sudo chown -R "$USER" .
+          ISO=$(ls *.iso)
+          if [ "$(stat -c %s "$ISO")" -gt 2000000000 ]; then
+            split -b 1900M -d "$ISO" "$ISO.part"
+            echo "ISO découpée : cat $ISO.part* > $ISO" > LISEZMOI-decoupe.txt
+            rm "$ISO"
+          fi
+          ls -lh
+
+      - name: Garder l'ISO (7 jours, onglet Actions)
+        uses: actions/upload-artifact@v4
+        with:
+          name: nexusos-iso
+          path: sortie/
+          retention-days: 7
+          compression-level: 0
+
+      - name: Publier (étiquette v…)
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: sortie/*
+          body_path: sortie/versions.txt

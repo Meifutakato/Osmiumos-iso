@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Paramètres
+GenericName=Paramètres NexusOS
+Comment=Réseau, Bluetooth, son, écran, applications, mises à jour
+Exec=quickshell ipc call parametres ouvrir
+Icon=/usr/share/pixmaps/nexusos-parametres.svg
+Categories=Settings;System;
+Keywords=réglages;configuration;wifi;bluetooth;son;écran;
