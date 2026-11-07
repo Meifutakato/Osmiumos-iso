@@ -2,7 +2,7 @@
 
 Une clé USB qui démarre sur le bureau NexusOS (Hyprland + Quickshell), pour l'essayer sans rien installer,
 puis l'installer. Fabriquée automatiquement par GitHub Actions à partir du dépôt
-[nexusos](https://github.com/Meifutakato/nexusos) (outils Rust, thème) et du profil « releng » d'Arch Linux.
+nexusos (dépôt privé : outils Rust, thème) et du profil « releng » d'Arch Linux.
 
 ## Télécharger
 
@@ -27,7 +27,7 @@ Si l'ISO est découpée (`.part00`, `.part01`) : `cat nexusos-….iso.part* > ne
 Sur un Arch Linux, en root, avec ~10 Go libres :
 ```
 git clone https://github.com/Meifutakato/nexusos-iso && cd nexusos-iso
-git clone https://github.com/Meifutakato/nexusos
+git clone https://github.com/Meifutakato/nexusos   # privé : accès nécessaire
 bash construire.sh          # → sortie/nexusos-AAAA.MM.JJ-x86_64.iso
 ```
 
