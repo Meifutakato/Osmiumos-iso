@@ -1,4 +1,4 @@
-# NexusOS — paquets pris dans l'AUR s'ils ne sont pas (ou plus) dans les dépôts officiels.
+# OsmiumOS — paquets pris dans l'AUR s'ils ne sont pas (ou plus) dans les dépôts officiels.
 # La fabrication vérifie d'abord les dépôts officiels : un paquet passé en officiel est pris là.
 quickshell
 gpu-screen-recorder

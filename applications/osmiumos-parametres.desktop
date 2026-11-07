@@ -1,9 +1,9 @@
 [Desktop Entry]
 Type=Application
 Name=Paramètres
-GenericName=Paramètres NexusOS
+GenericName=Paramètres OsmiumOS
 Comment=Réseau, Bluetooth, son, écran, applications, mises à jour
 Exec=quickshell ipc call parametres ouvrir
-Icon=/usr/share/pixmaps/nexusos-parametres.svg
+Icon=/usr/share/pixmaps/osmiumos-parametres.svg
 Categories=Settings;System;
 Keywords=réglages;configuration;wifi;bluetooth;son;écran;

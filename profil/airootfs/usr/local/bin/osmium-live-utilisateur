@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# OsmiumOS — crée l'utilisateur « osmium » de la session d'essai (à chaque démarrage de la clé : tout est en mémoire)
+id osmium >/dev/null 2>&1 && exit 0
+useradd -m -G wheel,video,audio,input,network,storage,gamemode -s /bin/bash -c "OsmiumOS" osmium 2>/dev/null \
+  || useradd -m -G wheel,video,audio,input -s /bin/bash -c "OsmiumOS" osmium
+passwd -d osmium >/dev/null
+sudo -u osmium xdg-user-dirs-update 2>/dev/null || true

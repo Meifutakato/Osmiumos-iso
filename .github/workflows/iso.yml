@@ -1,4 +1,4 @@
-# NexusOS — fabrication de l'image ISO
+# OsmiumOS — fabrication de l'image ISO
 #  · à chaque modification de ce dépôt, ou à la main (onglet Actions › « Image ISO » › Run workflow) :
 #    l'ISO est gardée 7 jours dans les « artifacts » de la fabrication
 #  · étiquette « v… » (ex. v0.1) : l'ISO est publiée dans Releases, téléchargeable sans compte
@@ -10,8 +10,8 @@ on:
     tags: ["v*"]
   workflow_dispatch:
     inputs:
-      nexusos_ref:
-        description: "Version du dépôt nexusos à utiliser (branche ou commit)"
+      osmiumos_ref:
+        description: "Version du dépôt osmiumos à utiliser (branche ou commit)"
         default: main
 
 permissions:
@@ -34,27 +34,27 @@ jobs:
 
       - uses: actions/checkout@v4
 
-      - name: Dépôt nexusos (outils, thème)
+      - name: Dépôt osmiumos (outils, thème)
         uses: actions/checkout@v4
         with:
-          repository: Meifutakato/nexusos
-          ref: ${{ github.event.inputs.nexusos_ref || 'main' }}
-          path: nexusos
+          repository: Meifutakato/osmiumos
+          ref: ${{ github.event.inputs.osmiumos_ref || 'main' }}
+          path: osmiumos
           fetch-depth: 1
-          # nexusos est privé : jeton en lecture seule (Settings › Secrets › Actions › NEXUSOS_TOKEN)
-          token: ${{ secrets.NEXUSOS_TOKEN || github.token }}
+          # osmiumos est privé : jeton en lecture seule (Settings › Secrets › Actions › OSMIUMOS_TOKEN ; l'ancien NEXUSOS_TOKEN marche aussi)
+          token: ${{ secrets.OSMIUMOS_TOKEN || secrets.NEXUSOS_TOKEN || github.token }}
 
       - name: Fabrication (conteneur Arch Linux)
         run: |
           sudo docker run --rm --privileged \
             -v "$PWD:/iso" -w /iso \
-            -e NEXUSOS_DIR=/iso/nexusos -e SORTIE=/iso/sortie -e TRAVAIL=/tmp/nexus-iso \
+            -e OSMIUMOS_DIR=/iso/osmiumos -e SORTIE=/iso/sortie -e TRAVAIL=/tmp/osmium-iso \
             archlinux:latest bash /iso/construire.sh
 
       - name: Garder l'ISO (7 jours, onglet Actions)
         uses: actions/upload-artifact@v4
         with:
-          name: nexusos-iso
+          name: osmiumos-iso
           path: sortie/
           retention-days: 7
           compression-level: 0

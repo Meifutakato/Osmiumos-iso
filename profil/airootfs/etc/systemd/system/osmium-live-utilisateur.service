@@ -1,11 +1,11 @@
 [Unit]
-Description=NexusOS — utilisateur de la session d'essai
+Description=OsmiumOS — utilisateur de la session d'essai
 Before=getty@tty1.service systemd-user-sessions.service
 After=systemd-sysusers.service
 
 [Service]
 Type=oneshot
-ExecStart=/usr/local/bin/nexus-live-utilisateur
+ExecStart=/usr/local/bin/osmium-live-utilisateur
 RemainAfterExit=yes
 
 [Install]

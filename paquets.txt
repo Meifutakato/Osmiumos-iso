@@ -1,4 +1,4 @@
-# NexusOS — paquets ajoutés à l'image (en plus de ceux d'Arch « releng » : noyau, micrologiciels, outils disque…)
+# OsmiumOS — paquets ajoutés à l'image (en plus de ceux d'Arch « releng » : noyau, micrologiciels, outils disque…)
 # Un paquet absent des dépôts officiels est fabriqué depuis l'AUR (voir paquets-aur.txt).
 # Steam, Wine, Proton et les modèles d'IA ne sont PAS dans l'image (trop lourds) :
 # ils s'installent après coup, avec Internet.
@@ -31,7 +31,7 @@ vulkan-radeon
 vulkan-intel
 vulkan-icd-loader
 
-# ── Bureau NexusOS ──
+# ── Bureau OsmiumOS ──
 hyprland
 xdg-desktop-portal-hyprland
 hyprlock
@@ -90,7 +90,7 @@ bubblewrap
 gamemode
 mangohud
 
-# ── Outils Rust de NexusOS (compilés pendant la fabrication) : rien à ajouter ici ──
+# ── Outils Rust de OsmiumOS (compilés pendant la fabrication) : rien à ajouter ici ──
 less
 brightnessctl
 playerctl
