@@ -3,8 +3,7 @@
 # Steam, Wine, Proton et les modèles d'IA ne sont PAS dans l'image (trop lourds) :
 # ils s'installent après coup, avec Internet.
 
-# ── Système ──
-base-devel
+# ── Système ── (base-devel, pour fabriquer des paquets AUR, s'installe ensuite : l'image reste sous 2 Go)
 btrfs-progs
 grub
 efibootmgr
