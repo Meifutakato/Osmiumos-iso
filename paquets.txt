@@ -91,3 +91,4 @@ gamemode
 mangohud
 
 # ── Outils Rust de NexusOS (compilés pendant la fabrication) : rien à ajouter ici ──
+less
