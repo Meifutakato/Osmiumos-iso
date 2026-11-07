@@ -42,7 +42,7 @@ jobs:
           path: nexusos
           fetch-depth: 1
           # nexusos est privé : jeton en lecture seule (Settings › Secrets › Actions › NEXUSOS_TOKEN)
-          token: ${{ secrets.NEXUSOS_TOKEN }}
+          token: ${{ secrets.NEXUSOS_TOKEN || github.token }}
 
       - name: Fabrication (conteneur Arch Linux)
         run: |
