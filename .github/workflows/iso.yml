@@ -41,8 +41,8 @@ jobs:
           ref: ${{ github.event.inputs.osmiumos_ref || 'main' }}
           path: osmiumos
           fetch-depth: 1
-          # osmiumos est privé : jeton en lecture seule (Settings › Secrets › Actions › OSMIUMOS_TOKEN ; l'ancien NEXUSOS_TOKEN marche aussi)
-          token: ${{ secrets.OSMIUMOS_TOKEN || secrets.NEXUSOS_TOKEN || github.token }}
+          # osmiumos est privé : jeton en lecture seule (Settings › Secrets › Actions › OSMIUMOS_TOKEN)
+          token: ${{ secrets.OSMIUMOS_TOKEN || github.token }}
 
       - name: Fabrication (conteneur Arch Linux)
         run: |
