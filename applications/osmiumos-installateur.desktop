@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Installer OsmiumOS
+GenericName=Installateur OsmiumOS
+Comment=Installer OsmiumOS sur une clé USB, un disque externe ou ce PC
+Exec=quickshell ipc call installateur ouvrir
+Icon=/usr/share/pixmaps/osmiumos.svg
+Categories=System;
+Keywords=installer;installation;disque;clé;usb;

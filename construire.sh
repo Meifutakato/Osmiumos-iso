@@ -76,9 +76,17 @@ if (( ${#A_FABRIQUER[@]} > 0 )); then
     echo "$p" >> "$LISTE"
   done
   repo-add -q "$DEPOT/osmiumos-local.db.tar.gz" "$DEPOT"/*.pkg.tar.zst
+  # Pour l'installateur (méthode « Télécharger ») : ces paquets ne sont pas dans les dépôts officiels
+  install -d "$P/airootfs/usr/local/share/osmium-installateur/aur"
+  cp "$DEPOT"/*.pkg.tar.zst "$P/airootfs/usr/local/share/osmium-installateur/aur/"
   printf '\n[osmiumos-local]\nSigLevel = Optional TrustAll\nServer = file://%s\n' "$DEPOT" >> "$P/pacman.conf"
 fi
 sort -u -o "$LISTE" "$LISTE"
+# Pour l'installateur (méthode « Télécharger ») : les paquets officiels voulus par OsmiumOS
+install -d "$P/airootfs/usr/local/share/osmium-installateur"
+for p in "${VOULUS[@]}"; do
+  [[ " ${A_FABRIQUER[*]} " == *" $p "* ]] || echo "$p"
+done > "$P/airootfs/usr/local/share/osmium-installateur/paquets.txt"
 echo "   $(wc -l < "$LISTE") paquets"
 
 # ------------------------------------------------------------

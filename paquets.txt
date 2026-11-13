@@ -94,3 +94,13 @@ mangohud
 less
 brightnessctl
 playerctl
+
+# Installateur d'OsmiumOS (osmium-installateur) et Osmium Store
+arch-install-scripts
+rsync
+gptfdisk
+cryptsetup
+dosfstools
+squashfs-tools
+curl
+flatpak
