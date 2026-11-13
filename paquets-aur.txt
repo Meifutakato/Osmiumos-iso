@@ -3,3 +3,5 @@
 quickshell
 gpu-screen-recorder
 mpv-uosc
+# Sélecteur de fichiers des autres applis → Osmium Fichiers (portail)
+xdg-desktop-portal-termfilechooser-boydaihungst-git

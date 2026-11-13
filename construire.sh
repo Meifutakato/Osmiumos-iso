@@ -111,6 +111,22 @@ install -Dm644 "$OSMIUMOS/osmium-defender/systeme/osmium-defender.desktop" "$P/a
 install -Dm644 "$OSMIUMOS/osmium-fichiers/systeme/osmium-fichiers.desktop" "$P/airootfs/usr/local/share/applications/osmium-fichiers.desktop"
 install -Dm440 "$OSMIUMOS/osmium-coffre/systeme/osmium-coffre.sudoers" "$P/airootfs/etc/sudoers.d/osmium-coffre"
 install -d -m700 "$P/airootfs/var/lib/osmium-coffres"
+# Sélecteur de fichiers des autres applis (Firefox « Parcourir… ») : Osmium Fichiers, par le portail termfilechooser
+install -Dm755 "$OSMIUMOS/osmium-fichiers/systeme/osmium-choisir-fichier" "$P/airootfs/usr/local/bin/osmium-choisir-fichier"
+install -Dm644 /dev/stdin "$P/airootfs/etc/xdg/xdg-desktop-portal-termfilechooser/config" <<'FIN'
+[filechooser]
+cmd=/usr/local/bin/osmium-choisir-fichier
+default_dir=$HOME
+FIN
+install -Dm644 /dev/stdin "$P/airootfs/etc/xdg-desktop-portal/hyprland-portals.conf" <<'FIN'
+# OsmiumOS
+[preferred]
+default=hyprland;gtk
+org.freedesktop.impl.portal.FileChooser=termfilechooser;gtk
+FIN
+install -Dm644 /dev/stdin "$P/airootfs/usr/lib/firefox/defaults/pref/osmiumos-selecteur.js" <<'FIN'
+pref("widget.use-xdg-desktop-portal.file-picker", 1);
+FIN
 # Windows à côté : lecture seule par défaut, aussi pendant l'essai
 install -Dm644 "$OSMIUMOS/osmium-windows/systeme/osmium-windows.service" "$P/airootfs/etc/systemd/system/osmium-windows.service"
 ln -sf /etc/systemd/system/osmium-windows.service "$P/airootfs/etc/systemd/system/multi-user.target.wants/osmium-windows.service"
