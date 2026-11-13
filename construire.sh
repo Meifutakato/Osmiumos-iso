@@ -109,6 +109,8 @@ for ancien in osmium-shadowrecord osmium-reprise osmium-clip-sauve osmium-gamere
 install -Dm644 "$OSMIUMOS/osmium-defender/donnees/attack-reduit.json" "$P/airootfs/usr/local/share/osmium-defender/attack-reduit.json"
 install -Dm644 "$OSMIUMOS/osmium-defender/systeme/osmium-defender.desktop" "$P/airootfs/usr/local/share/applications/osmium-defender.desktop"
 install -Dm644 "$OSMIUMOS/osmium-fichiers/systeme/osmium-fichiers.desktop" "$P/airootfs/usr/local/share/applications/osmium-fichiers.desktop"
+install -Dm440 "$OSMIUMOS/osmium-coffre/systeme/osmium-coffre.sudoers" "$P/airootfs/etc/sudoers.d/osmium-coffre"
+install -d -m700 "$P/airootfs/var/lib/osmium-coffres"
 # Windows à côté : lecture seule par défaut, aussi pendant l'essai
 install -Dm644 "$OSMIUMOS/osmium-windows/systeme/osmium-windows.service" "$P/airootfs/etc/systemd/system/osmium-windows.service"
 ln -sf /etc/systemd/system/osmium-windows.service "$P/airootfs/etc/systemd/system/multi-user.target.wants/osmium-windows.service"

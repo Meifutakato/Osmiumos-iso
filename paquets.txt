@@ -110,3 +110,10 @@ ntfs-3g
 # Osmium Fichiers (archives, corbeille)
 libarchive
 glib2
+
+# Dossiers protégés (osmium-coffre)
+gocryptfs
+fuse3
+qrencode
+zbar
+poppler
