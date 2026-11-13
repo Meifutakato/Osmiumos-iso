@@ -106,3 +106,7 @@ curl
 flatpak
 udisks2
 ntfs-3g
+
+# Osmium Fichiers (archives, corbeille)
+libarchive
+glib2
