@@ -104,3 +104,5 @@ dosfstools
 squashfs-tools
 curl
 flatpak
+udisks2
+ntfs-3g

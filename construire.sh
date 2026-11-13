@@ -108,6 +108,9 @@ for ancien in osmium-shadowrecord osmium-reprise osmium-clip-sauve osmium-gamere
 # Données et fichiers système des outils
 install -Dm644 "$OSMIUMOS/osmium-defender/donnees/attack-reduit.json" "$P/airootfs/usr/local/share/osmium-defender/attack-reduit.json"
 install -Dm644 "$OSMIUMOS/osmium-defender/systeme/osmium-defender.desktop" "$P/airootfs/usr/local/share/applications/osmium-defender.desktop"
+# Windows à côté : lecture seule par défaut, aussi pendant l'essai
+install -Dm644 "$OSMIUMOS/osmium-windows/systeme/osmium-windows.service" "$P/airootfs/etc/systemd/system/osmium-windows.service"
+ln -sf /etc/systemd/system/osmium-windows.service "$P/airootfs/etc/systemd/system/multi-user.target.wants/osmium-windows.service"
 install -Dm644 "$OSMIUMOS/osmium-safezone/systeme/osmium-safezone.service" "$P/airootfs/etc/systemd/user/osmium-safezone.service"
 install -Dm644 "$OSMIUMOS/osmium-safezone/systeme/osmium-safezone.timer" "$P/airootfs/etc/systemd/user/osmium-safezone.timer"
 
