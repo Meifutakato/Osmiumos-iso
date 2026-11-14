@@ -117,3 +117,5 @@ fuse3
 qrencode
 zbar
 poppler
+# Pare-feu (phase7q)
+nftables

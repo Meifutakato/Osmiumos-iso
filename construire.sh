@@ -111,6 +111,11 @@ install -Dm644 "$OSMIUMOS/osmium-defender/systeme/osmium-defender.desktop" "$P/a
 install -Dm644 "$OSMIUMOS/osmium-fichiers/systeme/osmium-fichiers.desktop" "$P/airootfs/usr/local/share/applications/osmium-fichiers.desktop"
 install -Dm440 "$OSMIUMOS/osmium-coffre/systeme/osmium-coffre.sudoers" "$P/airootfs/etc/sudoers.d/osmium-coffre"
 install -d -m700 "$P/airootfs/var/lib/osmium-coffres"
+# Pare-feu (phase7q) : règles nftables chargées au démarrage, module ksmbd désactivé
+install -Dm644 "$OSMIUMOS/systeme-parefeu/nftables.conf" "$P/airootfs/etc/nftables.conf"
+install -d "$P/airootfs/etc/systemd/system/multi-user.target.wants" "$P/airootfs/etc/modprobe.d"
+ln -sf /usr/lib/systemd/system/nftables.service "$P/airootfs/etc/systemd/system/multi-user.target.wants/nftables.service"
+echo "install ksmbd /bin/false   # OsmiumOS (phase7q)" > "$P/airootfs/etc/modprobe.d/osmium-ksmbd.conf"
 # Sélecteur de fichiers des autres applis (Firefox « Parcourir… ») : Osmium Fichiers, par le portail termfilechooser
 install -Dm755 "$OSMIUMOS/osmium-fichiers/systeme/osmium-choisir-fichier" "$P/airootfs/usr/local/bin/osmium-choisir-fichier"
 install -Dm644 /dev/stdin "$P/airootfs/etc/xdg/xdg-desktop-portal-termfilechooser/config" <<'FIN'
