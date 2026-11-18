@@ -110,6 +110,13 @@ install -Dm644 "$OSMIUMOS/osmium-defender/donnees/attack-reduit.json" "$P/airoot
 install -Dm644 "$OSMIUMOS/osmium-defender/systeme/osmium-defender.desktop" "$P/airootfs/usr/local/share/applications/osmium-defender.desktop"
 install -Dm644 "$OSMIUMOS/osmium-fichiers/systeme/osmium-fichiers.desktop" "$P/airootfs/usr/local/share/applications/osmium-fichiers.desktop"
 install -Dm440 "$OSMIUMOS/osmium-coffre/systeme/osmium-coffre.sudoers" "$P/airootfs/etc/sudoers.d/osmium-coffre"
+# Gestes à 2 doigts sur les bords du pavé (osmium-gestes) : pour l'utilisateur de la session ouverte
+install -Dm644 "$OSMIUMOS/osmium-gestes/systeme/71-osmium-gestes.rules" "$P/airootfs/etc/udev/rules.d/71-osmium-gestes.rules"
+sed "s/UTILISATEUR/auto/" "$OSMIUMOS/osmium-gestes/systeme/osmium-gestes.service" > "$TRAVAIL/osmium-gestes.service"
+install -Dm644 "$TRAVAIL/osmium-gestes.service" "$P/airootfs/etc/systemd/system/osmium-gestes.service"
+install -d "$P/airootfs/etc/systemd/system/multi-user.target.wants" "$P/airootfs/etc/modules-load.d"
+ln -sf /etc/systemd/system/osmium-gestes.service "$P/airootfs/etc/systemd/system/multi-user.target.wants/osmium-gestes.service"
+echo uinput > "$P/airootfs/etc/modules-load.d/osmium-gestes.conf"
 install -d -m700 "$P/airootfs/var/lib/osmium-coffres"
 # Pare-feu (phase7q) : règles nftables chargées au démarrage, module ksmbd désactivé
 install -Dm644 "$OSMIUMOS/systeme-parefeu/nftables.conf" "$P/airootfs/etc/nftables.conf"
