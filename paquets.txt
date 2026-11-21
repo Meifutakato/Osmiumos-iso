@@ -93,6 +93,10 @@ mangohud
 # ── Outils Rust de OsmiumOS (compilés pendant la fabrication) : rien à ajouter ici ──
 less
 brightnessctl
+# Téléphone (phase7s) : KDE Connect, écran du téléphone
+kdeconnect
+scrcpy
+android-tools
 playerctl
 
 # Installateur d'OsmiumOS (osmium-installateur) et Osmium Store

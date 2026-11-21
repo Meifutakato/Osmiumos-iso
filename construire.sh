@@ -117,6 +117,11 @@ install -Dm644 "$TRAVAIL/osmium-gestes.service" "$P/airootfs/etc/systemd/system/
 install -d "$P/airootfs/etc/systemd/system/multi-user.target.wants" "$P/airootfs/etc/modules-load.d"
 ln -sf /etc/systemd/system/osmium-gestes.service "$P/airootfs/etc/systemd/system/multi-user.target.wants/osmium-gestes.service"
 echo uinput > "$P/airootfs/etc/modules-load.d/osmium-gestes.conf"
+# Téléphone (osmium-telephone, phase7s) : KDE Connect fermé par le pare-feu sauf le téléphone associé
+sed "s/UTILISATEUR/auto/" "$OSMIUMOS/osmium-telephone/systeme/osmium-telephone.service" > "$TRAVAIL/osmium-telephone.service"
+install -Dm644 "$TRAVAIL/osmium-telephone.service" "$P/airootfs/etc/systemd/system/osmium-telephone.service"
+ln -sf /etc/systemd/system/osmium-telephone.service "$P/airootfs/etc/systemd/system/multi-user.target.wants/osmium-telephone.service"
+printf 'actif=1\nmac=\nip=\n' > "$P/airootfs/etc/osmium-telephone.conf"
 install -d -m700 "$P/airootfs/var/lib/osmium-coffres"
 # Pare-feu (phase7q) : règles nftables chargées au démarrage, module ksmbd désactivé
 install -Dm644 "$OSMIUMOS/systeme-parefeu/nftables.conf" "$P/airootfs/etc/nftables.conf"
